@@ -4,15 +4,15 @@
 
 int main(){
         
-        int n1; //é necessário declarar a variavel antes de usar o scanf//
-        printf("Digite o primeiro número: "); //o print deve vir antes do scanf(input) porque diferente do python o scanf só vai ler um valor e não vai printar nada na tela//
-        scanf("%d", &n1); //e preciso colocar o tipo do dado no caso o %d é decimal e salvar no espaço da memoria referente a n1 nesse caso, usando &, se for string não é necessário//
+        int n1, n2, soma; //é necessário declarar as variaveis logo após o main e antes de usar o scanf//
         
-        int n2;
+        printf("Digite o primeiro número: "); //o print deve vir antes do scanf(input) porque diferente do python o scanf só vai ler um valor e não vai printar nada na tela//
+        scanf("%d", &n1); //e preciso colocar o tipo do dado no caso o %d é decimal e salvar no espaço da memoria referente (n1 nesse caso), usando &, se for string não é necessário//
+        
         printf("Digite o segundo número: ");
         scanf("%d", &n2);
         
-        int soma = n1+n2; //se a variavel não precisar de um input(scanf) pode ser definida na mesma linha//
+        soma=n1+n2;
         printf("A soma de %d + %d = %d", n1, n2, soma); 
     
     return 0;
