@@ -4,29 +4,30 @@
 
 int main()
 {
-        int valor;
+        int valor, nota100, nota50, nota20, nota10, nota5, nota2, nota1;
+        
         printf("Digite valor em reais que deseja saber a menor quantidade de cedulas necessárias: ");
         scanf("%d", &valor);
         
-        int nota100 = valor / 100;
+        nota100 = valor / 100;
         valor = valor % 100;
     
-        int nota50 = valor / 50;
+        nota50 = valor / 50;
         valor = valor % 50;
     
-        int nota20 = valor / 20;
+        nota20 = valor / 20;
         valor = valor % 20;
     
-        int nota10 = valor / 10;
+        nota10 = valor / 10;
         valor = valor % 10;
     
-        int nota5 = valor / 5;
+        nota5 = valor / 5;
         valor = valor % 5;
     
-        int nota2 = valor / 2;
+        nota2 = valor / 2;
         valor = valor % 2;
     
-        int nota1 = valor / 1;
+        nota1 = valor / 1;
         valor = valor % 1;
     
         printf("%d nota(s) de 100,00\n", nota100);
