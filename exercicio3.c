@@ -3,13 +3,12 @@
 #include <stdio.h> //scanf, printf
 
 int main(){
-        
         char aluno[20]; //se não definir o valor precisa definir o tamanho maximo//
+        float nota1, nota2, nota3, media; //definição de variaveis do mesmo tipo pode estar na mesma linha//
+        
         printf("Digite o nome do aluno: ");
-
         scanf("%s", aluno); //como é string não precisa do &//
         
-        float nota1, nota2, nota3; //definição de variaveis do mesmo tipo pode estar na mesma linha//
         printf("Digite a primeira nota: ");
         scanf("%f", &nota1);
         
@@ -19,8 +18,8 @@ int main(){
         printf("Digite a terceira nota: ");
         scanf("%f", &nota3);
         
-        float media = (nota1 + nota2 + nota3)/3;
-        printf("A media das notas de %s é: %f", aluno, media);
+        media = (nota1 + nota2 + nota3)/3;
+        printf("A media das notas de %s é: %.2f", aluno, media);
         
     return 0;
         
