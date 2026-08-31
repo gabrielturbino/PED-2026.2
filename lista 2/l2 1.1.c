@@ -12,7 +12,7 @@ int main(){
     printf("Digite um número para somar os números de 1 até ele: ");
     scanf("%d", &n);
     
-    printf("Os números de 1 a %d somados são: %d", n, somatorio(n));
+    printf("\nOs números de 1 a %d somados são: %d", n, somatorio(n));
     
     return 0;
 }
