@@ -1,1 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h> //lembrar da biblioteca para ponteiro
 
+int  main()
+{
+ int *ptr, i;
+ ptr = (int *) calloc(10, sizeof(int)); //lembrar que calloc deixa tudo 0 na memória
+ *ptr = 10;
+ for(i=0;i<5;i++){
+    ptr=ptr+1; //mudou para onde aponta pulando 5 vezes
+ }
+ printf("\nptr: %d", *ptr); //como com exeção do primeiro que é 10 o restante é zero então retorna 0
+ return 0;
+}
+
+ 
