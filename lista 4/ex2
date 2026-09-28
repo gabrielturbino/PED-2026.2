@@ -1,1 +1,28 @@
+#include <stdio.h>
 
+void reorganiza(int *a, int *b) {
+    int temp;
+
+    if (*a < *b) {
+        temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+}
+
+int main() {
+    int x, y;
+
+    printf("Digite o primeiro valor: ");
+    scanf("%d", &x);
+
+    printf("Digite o segundo valor: ");
+    scanf("%d", &y);
+
+    reorganiza(&x, &y);
+
+    printf("Primeira variavel (maior): %d\n", x);
+    printf("Segunda variavel (menor): %d\n", y);
+
+    return 0;
+}
