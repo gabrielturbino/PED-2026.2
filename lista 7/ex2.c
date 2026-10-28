@@ -1,62 +1,85 @@
-
 #include <stdio.h>
-#include <string.h>
+#define MAX 1000
 
-// Inclua o arquivo onde estão declaradas as funções da pilha.
-// Exemplo: #include "pilha.h"
+// Estrutura da pilha: guarda caracteres.
+typedef struct {
+    char dados[MAX];
+    int topo;
+} Pilha;
+
+// Inicializa a pilha como vazia.
+void inicializa_pilha(Pilha *p) {
+    p->topo = -1;
+}
+
+// Retorna 1 se a pilha estiver vazia e 0 caso contrário.
+int pilha_vazia(Pilha *p) {
+    return p->topo == -1;
+}
+
+// Adiciona um caractere no topo da pilha.
+void push(Pilha *p, char c) {
+    if (p->topo < MAX - 1) {
+        p->topo++;
+        p->dados[p->topo] = c;
+    }
+}
+
+// Remove e retorna o caractere do topo.
+// Por segurança, só chamamos pop depois de verificar
+// se a pilha não está vazia.
+char pop(Pilha *p) {
+    return p->dados[p->topo--];
+}
 
 int main() {
-    char expressao[1000];
+    char expressao[MAX];
+    Pilha p;
 
-    // Lê a expressão digitada pelo usuário.
+    // Lê a expressão digitada.
     printf("Digite uma expressao: ");
     fgets(expressao, sizeof(expressao), stdin);
 
-    // Cria uma pilha para armazenar os caracteres de abertura.
-    // A pilha deve ser do tipo char, pois guardará (, [ e {.
-    Pilha p;
+    // Inicializa a pilha antes de usá-la.
     inicializa_pilha(&p);
 
     // Percorre a expressão caractere por caractere.
     for (int i = 0; expressao[i] != '\0'; i++) {
         char c = expressao[i];
 
-        // Se encontrar uma abertura, empilha o caractere.
+        // Se for abertura, guarda na pilha.
         if (c == '(' || c == '[' || c == '{') {
             push(&p, c);
         }
 
-        // Se encontrar um fechamento, verifica se existe
-        // uma abertura correspondente na pilha.
+        // Se for fechamento, verifica se combina.
         else if (c == ')' || c == ']' || c == '}') {
 
-            // Se a pilha estiver vazia, não existe abertura
-            // correspondente para este fechamento.
+            // Não pode retirar de uma pilha vazia.
             if (pilha_vazia(&p)) {
-                printf("Expressao NAO balanceada!\n");
+                printf("Nao balanceada: fechamento sem abertura.\n");
                 return 0;
             }
 
-            // Remove a última abertura que foi empilhada.
-            char topo = pop(&p);
+            // Retira a última abertura armazenada.
+            char abertura = pop(&p);
 
-            // Verifica se os tipos de abertura e fechamento combinam.
-            if ((c == ')' && topo != '(') ||
-                (c == ']' && topo != '[') ||
-                (c == '}' && topo != '{')) {
+            // Confere se os símbolos correspondem.
+            if ((c == ')' && abertura != '(') ||
+                (c == ']' && abertura != '[') ||
+                (c == '}' && abertura != '{')) {
 
-                printf("Expressao NAO balanceada!\n");
+                printf("Nao balanceada: fechamento na ordem errada.\n");
                 return 0;
             }
         }
     }
 
-    // Se ainda houver aberturas na pilha, faltaram fechamentos.
-    if (!pilha_vazia(&p)) {
-        printf("Expressao NAO balanceada!\n");
+    // Se sobraram aberturas, a pilha não estará vazia.
+    if (pilha_vazia(&p)) {
+        printf("Balanceada!\n");
     } else {
-        // Se a pilha estiver vazia, todos os símbolos combinaram.
-        printf("Expressao balanceada!\n");
+        printf("Nao balanceada: sobrou uma abertura.\n");
     }
 
     return 0;
